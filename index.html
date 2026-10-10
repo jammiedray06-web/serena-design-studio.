@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8f1e9">
+<title>Serena Design Studio — Starter</title>
+<style>
+:root{--ink:#302721;--muted:#76685d;--paper:#fffdf9;--rose:#b76e79;--line:#e7dcd0;--cream:#f8f1e9;--green:#536f61}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:22px 16px 18px;background:linear-gradient(135deg,#f8f1e9,#f1dfd7);border-bottom:1px solid var(--line)}
+.brand{font-family:Georgia,serif;font-size:clamp(27px,7vw,38px);letter-spacing:.2px;margin:0}.tag{color:var(--muted);margin:7px 0 0;font-size:14px}
+main{max-width:1000px;margin:auto;padding:14px;display:grid;gap:14px}
+nav{display:flex;gap:8px;overflow-x:auto;padding:2px 0 5px}
+nav button{white-space:nowrap;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:10px 14px;color:var(--ink);font-weight:650}
+nav button.active{background:var(--ink);color:white}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 4px 18px #46311b0a}
+h2{font-size:19px;margin:0 0 12px}h3{font-size:15px;margin:16px 0 8px}
+p,.hint{font-size:13px;line-height:1.5;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+label{display:block;font-size:12px;color:var(--muted);font-weight:700;margin-bottom:5px}
+input,select,textarea{width:100%;min-width:0;border:1px solid #d9cbbd;border-radius:10px;padding:11px;background:#fff;color:var(--ink);font:inherit;font-size:14px}
+input[type=file]{padding:8px}input[type=range]{padding:0}
+button,.btn{border:0;border-radius:11px;background:var(--rose);color:white;padding:12px 14px;font-weight:700;font-size:14px;cursor:pointer}
+button.secondary,.btn.secondary{background:#efe4dc;color:var(--ink);border:1px solid var(--line)}
+button.dark{background:var(--ink)}button:disabled{opacity:.5}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.preview{min-height:260px;display:grid;place-items:center;background:repeating-linear-gradient(45deg,#faf6f0,#faf6f0 12px,#f4ede5 12px,#f4ede5 24px);border-radius:14px;overflow:hidden}
+.preview svg{width:min(100%,340px);height:auto;max-height:380px}
+.canvas-wrap{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:white}
+canvas{width:100%;height:340px;display:block;touch-action:none}
+.pill{display:inline-block;border-radius:999px;background:#e6eee8;color:#345542;padding:5px 9px;font-size:11px;font-weight:800}
+.notice{background:#fff4df;border:1px solid #ead3a3;border-radius:12px;padding:12px;color:#654a19;font-size:13px;line-height:1.5}
+.output{white-space:pre-wrap;background:#f8f3ed;border-radius:10px;padding:12px;font-size:13px;line-height:1.55}
+.small{font-size:12px;color:var(--muted)}
+footer{text-align:center;padding:4px 16px 24px;color:var(--muted);font-size:12px}
+.hidden{display:none!important}
+@media(min-width:760px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header>
+  <p class="pill">EARLY PROTOTYPE</p>
+  <h1 class="brand">Serena Design Studio</h1>
+  <p class="tag">Imagine it. Design it. Sew it.</p>
+</header>
+<main>
+  <nav class="wide" aria-label="Studio sections">
+    <button class="active" data-tab="designer">Garment Designer</button>
+    <button data-tab="sizes">Size & Fit</button>
+    <button data-tab="sketch">Sketch Studio</button>
+    <button data-tab="pattern">Skirt Pattern Lab</button>
+  </nav>
+
+  <section id="designer" class="panel">
+    <h2>Garment Designer</h2>
+    <p>Choose a garment and adjust its details. The preview is a concept sketch, not a production pattern.</p>
+    <div class="grid">
+      <div><label for="garment">Garment</label><select id="garment"><option>Dress</option><option>Top</option><option>Shirt</option><option>Pants</option><option>Skirt</option><option>Jacket</option><option>Children's clothing</option></select></div>
+      <div><label for="neck">Neckline</label><select id="neck"><option>Round</option><option>V-neck</option><option>Square</option><option>Scoop</option><option>Boat</option><option>Collared</option><option>Off-shoulder</option></select></div>
+      <div><label for="sleeve">Sleeves</label><select id="sleeve"><option>Short</option><option>Long</option><option>Sleeveless</option><option>Ruffle</option><option>Puff</option><option>Bell</option><option>Bishop</option><option>Open / slit</option><option>Flutter</option><option>Off-shoulder</option></select></div>
+      <div><label for="length">Length</label><select id="length"><option>Mini</option><option selected>Knee</option><option>Midi</option><option>Maxi</option><option>Custom</option></select></div>
+      <div><label for="pockets">Pockets</label><select id="pockets"><option>None</option><option>Side pockets</option><option>Patch pockets</option></select></div>
+      <div><label for="closure">Closure</label><select id="closure"><option>None / pull-on</option><option>Zipper</option><option>Buttons</option><option>Hook and eye</option><option>Elastic waist</option></select></div>
+      <div><label for="fabric">Fabric type</label><select id="fabric"><option>Woven, non-stretch</option><option>Knit / stretch</option><option>Lightweight woven</option><option>Denim / heavy woven</option></select></div>
+      <div><label for="color">Preview color</label><input id="color" type="color" value="#b76e79"></div>
+    </div>
+    <div class="preview" style="margin-top:14px" id="garmentPreview" aria-label="Garment concept preview"></div>
+    <div class="actions"><button id="saveDesign">Save design brief</button><button class="secondary" id="downloadBrief">Download brief (.txt)</button></div>
+    <p id="saveMessage" class="small" aria-live="polite"></p>
+  </section>
+
+  <section id="sizes" class="panel hidden">
+    <h2>Size & Fit Studio</h2>
+    <p>Enter body measurements to guide drafting. Clothing labels vary by brand and country; measurements should take priority over labels.</p>
+    <div class="grid">
+      <div><label for="system">Sizing standard</label><select id="system"><option>US</option><option>UK</option><option>EU</option><option>France</option><option>Italy</option><option>Australia</option><option>Japan</option><option>Custom measurements</option></select></div>
+      <div><label for="size">Size label</label><select id="size">
+        <option>00 / XXS</option><option>0 / XS</option><option>2 / XS</option><option>4 / S</option><option>6 / S</option><option>8 / M</option><option>10 / M</option><option>12 / L</option><option>14 / L</option><option>16 / XL</option><option>18 / 2XL</option><option>20 / 2XL</option><option>22 / 3XL</option><option>24 / 3XL</option><option>26 / 4XL</option><option>28 / 4XL</option><option>5XL</option><option>6XL</option><option>7XL</option><option>Custom</option>
+      </select></div>
+      <div><label for="units">Units</label><select id="units"><option value="cm">Centimeters</option><option value="in">Inches</option></select></div>
+      <div><label for="bust">Bust / chest</label><input id="bust" type="number" min="1" step=".1" placeholder="e.g. 110"></div>
+      <div><label for="waist">Waist</label><input id="waist" type="number" min="1" step=".1" placeholder="e.g. 95"></div>
+      <div><label for="hip">Hip</label><input id="hip" type="number" min="1" step=".1" placeholder="e.g. 120"></div>
+      <div><label for="height">Height</label><input id="height" type="number" min="1" step=".1" placeholder="e.g. 165"></div>
+      <div><label for="inseam">Inseam</label><input id="inseam" type="number" min="0" step=".1" placeholder="optional"></div>
+      <div><label for="fit">Fit preference</label><select id="fit"><option>Standard</option><option>Close-fitting</option><option>Relaxed</option><option>Oversized</option></select></div>
+    </div>
+    <div class="actions"><button id="saveMeasurements">Save measurements on this device</button><button class="secondary" id="convertUnits">Convert entered measurements</button></div>
+    <div class="notice" style="margin-top:12px">International conversion status: this prototype stores the selected region and size label, while your measurements remain the drafting reference. Regional numerical conversions and 5XL–7XL charts must be configured and verified against a named sizing standard before commercial use.</div>
+    <div id="measureMessage" class="small" aria-live="polite"></div>
+  </section>
+
+  <section id="sketch" class="panel">
+    <h2>Sketch & Image Studio</h2>
+    <p>Upload a reference picture, then draw over it. Your image and sketch stay in this browser session unless you download them.</p>
+    <label for="imageUpload">Upload a picture</label><input id="imageUpload" type="file" accept="image/*">
+    <div class="canvas-wrap" style="margin-top:12px"><canvas id="sketchCanvas" width="900" height="620" aria-label="Drawing canvas"></canvas></div>
+    <div class="grid" style="margin-top:12px">
+      <div><label for="penColor">Pen color</label><input id="penColor" type="color" value="#b76e79"></div>
+      <div><label for="brushSize">Brush size</label><input id="brushSize" type="range" min="2" max="28" value="7"></div>
+      <div><label for="tool">Drawing tool</label><select id="tool"><option value="pen">Pen</option><option value="eraser">Eraser</option></select></div>
+    </div>
+    <div class="actions"><button class="secondary" id="undo">Undo</button><button class="secondary" id="clearCanvas">Clear drawing</button><button id="downloadSketch">Download sketch PNG</button></div>
+  </section>
+
+  <section id="pattern" class="panel">
+    <h2>Skirt Pattern Lab</h2>
+    <p>First experimental pattern module: a simple rectangular elastic-waist skirt. This is not yet a validated, production-ready sewing pattern.</p>
+    <div class="notice">Measure around the fullest part of the hips. Choose a finished skirt length from the waist to the desired hem. Use the same unit throughout. The engine adds configurable ease and seam/hem allowances.</div>
+    <div class="grid" style="margin-top:12px">
+      <div><label for="patternUnits">Pattern units</label><select id="patternUnits"><option value="cm">Centimeters</option><option value="in">Inches</option></select></div>
+      <div><label for="patternWaist">Body waist</label><input id="patternWaist" type="number" min="1" step=".1" value="90"></div>
+      <div><label for="patternHip">Body hip</label><input id="patternHip" type="number" min="1" step=".1" value="115"></div>
+      <div><label for="skirtLength">Finished skirt length</label><input id="skirtLength" type="number" min="1" step=".1" value="70"></div>
+      <div><label for="ease">Hip ease</label><input id="ease" type="number" min="0" step=".1" value="10"></div>
+      <div><label for="seam">Side seam allowance</label><input id="seam" type="number" min="0" step=".1" value="1.5"></div>
+      <div><label for="hem">Hem allowance</label><input id="hem" type="number" min="0" step=".1" value="4"></div>
+      <div><label for="casing">Elastic casing depth</label><input id="casing" type="number" min="0" step=".1" value="4"></div>
+      <div><label for="elasticRatio">Elastic ratio (0.8–1.0)</label><input id="elasticRatio" type="number" min=".8" max="1" step=".01" value=".9"></div>
+    </div>
+    <div class="actions"><button id="makePattern">Calculate pattern</button><button class="secondary" id="downloadPattern" disabled>Download full-size SVG</button><button class="secondary" id="downloadInstructions" disabled>Download sewing notes</button></div>
+    <div id="patternResults" class="output" style="margin-top:12px">Enter measurements and tap “Calculate pattern”.</div>
+    <div class="notice" style="margin-top:12px"><strong>Fit and print safety:</strong> sew a test version in inexpensive fabric, verify fit and construction, and check the 5 cm calibration square after printing. A correct square does not by itself validate garment fit. Print at 100% / actual size; do not use “fit to page.”</div>
+  </section>
+
+  <section class="panel wide">
+    <h2>Project status</h2>
+    <p><strong>Working now:</strong> garment option controls, concept preview, on-device measurement saving, image upload, touch drawing, sketch PNG export, and experimental elastic-waist skirt calculations with a full-size SVG and calibration square.</p>
+    <p><strong>Not ready yet:</strong> accurate cross-country numerical size charts, multi-piece bodice/trouser/jacket drafting, tiled PDF export, tested assembly instructions, cloud accounts, and Google Play packaging.</p>
+    <p class="small">Privacy note: this starter stores measurements in your browser's local storage when you tap Save. Avoid entering sensitive information on a shared device. Clearing browser data may remove saved information.</p>
+  </section>
+</main>
+<footer>Serena Design Studio · Early prototype · Not a substitute for a fit-tested commercial pattern</footer>
+<script>
+const $ = id => document.getElementById(id);
+const tabs = [...document.querySelectorAll('nav button')];
+tabs.forEach(btn => btn.addEventListener('click', () => {
+  tabs.forEach(b=>b.classList.toggle('active', b===btn));
+  ['designer','sizes','sketch','pattern'].forEach(id=>$(id).classList.toggle('hidden',id!==btn.dataset.tab));
+}));
+function garmentSvg(){
+  const type=$('garment').value, color=$('color').value, sleeve=$('sleeve').value, neck=$('neck').value;
+  let shape='';
+  if(type==='Pants') shape=`<path d="M105 95 L245 95 L230 210 L215 360 L170 360 L165 220 L150 360 L105 360 L120 210 Z" fill="${color}" stroke="#4a3933" stroke-width="3"/>`;
+  else if(type==='Skirt') shape=`<path d="M125 95 L225 95 L280 350 L70 350 Z" fill="${color}" stroke="#4a3933" stroke-width="3"/>`;
+  else if(type==="Children's clothing"||type==='Dress') shape=`<path d="M135 95 L215 95 L240 150 L280 350 L70 350 L110 150 Z" fill="${color}" stroke="#4a3933" stroke-width="3"/>`;
+  else if(type==='Jacket') shape=`<path d="M130 95 L220 95 L260 145 L245 330 L190 330 L190 175 L160 175 L160 330 L105 330 L90 145 Z" fill="${color}" stroke="#4a3933" stroke-width="3"/><path d="M175 100 L175 330" stroke="#fff4e9" stroke-width="3"/>`;
+  else shape=`<path d="M135 95 L215 95 L255 145 L230 180 L215 155 L215 330 L135 330 L135 155 L115 180 L90 145 Z" fill="${color}" stroke="#4a3933" stroke-width="3"/>`;
+  let sleeveMarks='';
+  if(sleeve==='Sleeveless') sleeveMarks=`<path d="M130 105 L150 145 M220 105 L200 145" stroke="#fff4e9" stroke-width="4"/>`;
+  else if(sleeve==='Ruffle'||sleeve==='Flutter') sleeveMarks=`<path d="M108 140 Q95 160 80 148 Q90 178 110 170 M242 140 Q255 160 270 148 Q260 178 240 170" fill="none" stroke="#fff4e9" stroke-width="4"/>`;
+  else sleeveMarks=`<path d="M110 145 L78 215 M240 145 L272 215" stroke="${color}" stroke-width="19" stroke-linecap="round"/><path d="M110 145 L78 215 M240 145 L272 215" stroke="#4a3933" stroke-width="2" stroke-linecap="round"/>`;
+  let neckMark = neck==='V-neck'?'<path d="M145 95 L175 130 L205 95" fill="none" stroke="#fff4e9" stroke-width="4"/>':neck==='Square'?'<path d="M145 95 L145 120 L205 120 L205 95" fill="none" stroke="#fff4e9" stroke-width="4"/>':'<path d="M145 95 Q175 130 205 95" fill="none" stroke="#fff4e9" stroke-width="4"/>';
+  return `<svg viewBox="0 0 350 410" role="img" aria-label="${type} concept sketch"><ellipse cx="175" cy="375" rx="100" ry="10" fill="#d8c8ba"/><circle cx="175" cy="48" r="27" fill="#d8b49b" stroke="#4a3933" stroke-width="2"/><path d="M148 43 Q150 12 180 18 Q204 20 202 48 Q190 30 169 32 Q157 43 148 43" fill="#5a4036"/><path d="M145 73 Q175 88 205 73" fill="none" stroke="#4a3933" stroke-width="2"/>${shape}${sleeveMarks}${neckMark}<text x="175" y="395" font-size="12" text-anchor="middle" fill="#76685d">${type} concept · not a pattern</text></svg>`;
+}
+function renderGarment(){ $('garmentPreview').innerHTML=garmentSvg(); }
+['garment','neck','sleeve','length','pockets','closure','fabric','color'].forEach(id=>$(id).addEventListener('input',renderGarment));
+renderGarment();
+function designBrief(){
+ return `Serena Design Studio — Design Brief\\nGarment: ${$('garment').value}\\nNeckline: ${$('neck').value}\\nSleeves: ${$('sleeve').value}\\nLength: ${$('length').value}\\nPockets: ${$('pockets').value}\\nClosure: ${$('closure').value}\\nFabric: ${$('fabric').value}\\nPreview color: ${$('color').value}\\n\\nNote: This is a concept brief, not a sewing pattern.`;
+}
+function downloadBlob(name, content, type){
+ const blob=new Blob([content],{type}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+$('saveDesign').onclick=()=>{localStorage.setItem('serenaDesignBrief',designBrief());$('saveMessage').textContent='Design brief saved in this browser on this device.';};
+$('downloadBrief').onclick=()=>downloadBlob('serena-design-brief.txt',designBrief(),'text/plain');
+function num(id){return Number($(id).value)}
+function measurementsObject(){return {system:$('system').value,size:$('size').value,units:$('units').value,bust:$('bust').value,waist:$('waist').value,hip:$('hip').value,height:$('height').value,inseam:$('inseam').value,fit:$('fit').value}}
+$('saveMeasurements').onclick=()=>{localStorage.setItem('serenaMeasurements',JSON.stringify(measurementsObject()));$('measureMessage').textContent='Measurements saved locally in this browser.';};
+$('convertUnits').onclick=()=>{
+ const old=$('units').value, next=old==='cm'?'in':'cm', factor=old==='cm'?1/2.54:2.54;
+ ['bust','waist','hip','height','inseam'].forEach(id=>{if($(id).value!=='')$(id).value=(Number($(id).value)*factor).toFixed(1)});
+ $('units').value=next; $('measureMessage').textContent='Converted entered measurements to '+(next==='cm'?'centimeters':'inches')+'. Check values before drafting.';
+};
+const canvas=$('sketchCanvas'), ctx=canvas.getContext('2d'); let drawing=false, last=null, undoStack=[], uploadedImage=null;
+function blankCanvas(){ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#b7a99c';ctx.font='26px sans-serif';ctx.textAlign='center';ctx.fillText('Upload a garment photo or sketch here',canvas.width/2,canvas.height/2);ctx.textAlign='start';}
+blankCanvas();
+function snapshot(){try{undoStack.push(canvas.toDataURL('image/png'));if(undoStack.length>15)undoStack.shift()}catch(e){}}
+$('imageUpload').addEventListener('change',e=>{
+ const f=e.target.files&&e.target.files[0];if(!f)return;
+ if(!f.type.startsWith('image/')){alert('Please select an image file.');return}
+ const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{snapshot();ctx.clearRect(0,0,canvas.width,canvas.height);const scale=Math.min(canvas.width/img.width,canvas.height/img.height);const w=img.width*scale,h=img.height*scale;ctx.drawImage(img,(canvas.width-w)/2,(canvas.height-h)/2,w,h);uploadedImage=img};img.src=reader.result};reader.readAsDataURL(f);
+});
+function point(e){const r=canvas.getBoundingClientRect();return {x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}
+canvas.addEventListener('pointerdown',e=>{e.preventDefault();snapshot();drawing=true;last=point(e);canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{if(!drawing)return;e.preventDefault();const p=point(e);ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=Number($('brushSize').value);ctx.strokeStyle=$('tool').value==='eraser'?'#ffffff':$('penColor').value;ctx.stroke();last=p});
+function stopDraw(){drawing=false;last=null}canvas.addEventListener('pointerup',stopDraw);canvas.addEventListener('pointercancel',stopDraw);
+$('undo').onclick=()=>{const data=undoStack.pop();if(!data)return;const img=new Image();img.onload=()=>{ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0)};img.src=data};
+$('clearCanvas').onclick=()=>{snapshot();blankCanvas()};
+$('downloadSketch').onclick=()=>{const a=document.createElement('a');a.download='serena-sketch.png';a.href=canvas.toDataURL('image/png');a.click()};
+let latestSvg='', latestNotes='';
+function cm(v){return $('patternUnits').value==='in'?v*2.54:v}
+function fmt(v){return Number(v.toFixed(2))}
+$('makePattern').onclick=()=>{
+ const unit=$('patternUnits').value, ulabel=unit==='cm'?'cm':'in';
+ const waist=cm(num('patternWaist')), hip=cm(num('patternHip')), length=cm(num('skirtLength')), ease=cm(num('ease')), seam=cm(num('seam')), hem=cm(num('hem')), casing=cm(num('casing')), ratio=num('elasticRatio');
+ if([waist,hip,length,ease,seam,hem,casing,ratio].some(v=>!Number.isFinite(v))||waist<=0||hip<=0||length<=0||hip<waist||ratio<.8||ratio>1){$('patternResults').textContent='Please check the values. Waist and hip must be positive, hip should not be smaller than waist, and elastic ratio must be 0.80–1.00.';return}
+ const width=(hip+ease)/2+2*seam; // each of two panels includes side seam allowances
+ const height=length+casing+hem+seam; // includes top seam, casing, length, hem
+ const elastic=waist*ratio+2.5; // cm, includes small joining overlap
+ const toUnit=v=>unit==='in'?v/2.54:v;
+ const w=fmt(toUnit(width)), h=fmt(toUnit(height)), e=fmt(toUnit(elastic));
+ // SVG dimensions in physical mm; a 50mm calibration square is included.
+ const widthMM=width*10, heightMM=height*10, seamMM=seam*10;
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${widthMM}mm" height="${heightMM}mm" viewBox="0 0 ${widthMM} ${heightMM}">
+ <rect x="0.5" y="0.5" width="${widthMM-1}" height="${heightMM-1}" fill="white" stroke="black" stroke-width="1"/>
+ <line x1="${seamMM}" y1="0" x2="${seamMM}" y2="${heightMM}" stroke="#888" stroke-dasharray="6 4" stroke-width="1"/>
+ <line x1="${widthMM-seamMM}" y1="0" x2="${widthMM-seamMM}" y2="${heightMM}" stroke="#888" stroke-dasharray="6 4" stroke-width="1"/>
+ <text x="${widthMM/2}" y="25" font-size="18" text-anchor="middle">SERENA — SKIRT PANEL</text>
+ <text x="${widthMM/2}" y="48" font-size="12" text-anchor="middle">Cut 2 · grainline parallel to long edge</text>
+ <text x="${widthMM/2}" y="${heightMM/2}" font-size="16" text-anchor="middle" transform="rotate(-90 ${widthMM/2} ${heightMM/2})">Panel height ${h} ${ulabel}</text>
+ <text x="${widthMM/2}" y="${heightMM-12}" font-size="13" text-anchor="middle">Panel width ${w} ${ulabel}</text>
+ <g transform="translate(12 68)"><rect width="50" height="50" fill="none" stroke="#b76e79" stroke-width="1.5"/><text x="25" y="61" font-size="10" text-anchor="middle">5 cm test</text><text x="25" y="72" font-size="10" text-anchor="middle">square</text></g>
+ </svg>`;
+ latestSvg=svg;
+ latestNotes=`SERENA DESIGN STUDIO — EXPERIMENTAL ELASTIC-WAIST SKIRT NOTES
+This is a first-pass rectangular skirt draft. Test in inexpensive fabric before cutting final fabric.
+
+Inputs (${ulabel}):
+Body waist: ${fmt(toUnit(waist))}
+Body hip: ${fmt(toUnit(hip))}
+Finished length (waist to hem): ${fmt(toUnit(length))}
+Hip ease: ${fmt(toUnit(ease))}
+Side seam allowance: ${fmt(toUnit(seam))}
+Hem allowance: ${fmt(toUnit(hem))}
+Elastic casing depth: ${fmt(toUnit(casing))}
+Elastic ratio: ${ratio}
+
+Calculated:
+Cut 2 rectangular panels, each ${w} ${ulabel} wide by ${h} ${ulabel} high.
+Estimated elastic length: ${e} ${ulabel} (confirm with a comfortable test fit; this is only a starting estimate).
+The panel height includes length + casing + hem allowance + top seam allowance.
+The panel width includes half the hip circumference plus ease, and side seam allowances.
+
+Assembly outline:
+1. Cut two panels with the grainline parallel to the long edge.
+2. Sew side seams using the chosen seam allowance; finish raw edges.
+3. Fold the top edge to form the casing, allowing room for the elastic plus ease; stitch, leaving a small opening.
+4. Thread elastic, overlap and securely join ends after trying it on.
+5. Close casing opening.
+6. Finish the hem with the included allowance.
+7. Try on and adjust before treating this as a final pattern.
+
+VALIDATION REQUIRED:
+- Print at 100% / actual size, never "fit to page".
+- Measure the 5 cm calibration square; it must be exactly 5 cm on each side.
+- Confirm pattern dimensions with a ruler.
+- Sew a test garment and check walking, sitting, waistband comfort, and hem length.
+- This basic module does not account for every body shape, fabric behavior, or all construction preferences. It is not a professionally validated pattern.
+`;
+ $('patternResults').textContent=`Pattern calculation (experimental)\\n\\nCut 2 panels: ${w} ${ulabel} wide × ${h} ${ulabel} high.\\nEstimated elastic length: ${e} ${ulabel}.\\n\\nWidth calculation: half of hip + ease, plus side seam allowances.\\nHeight calculation: finished length + casing + hem allowance + top seam allowance.\\n\\nDownload the SVG, then print at actual size. Check its 5 cm calibration square. Sew a test version before using final fabric.`;
+ $('downloadPattern').disabled=false;$('downloadInstructions').disabled=false;
+};
+$('downloadPattern').onclick=()=>{if(latestSvg)downloadBlob('serena-experimental-skirt-pattern.svg',latestSvg,'image/svg+xml')};
+$('downloadInstructions').onclick=()=>{if(latestNotes)downloadBlob('serena-skirt-sewing-notes.txt',latestNotes,'text/plain')};
+</script>
+</body>
+</html>
